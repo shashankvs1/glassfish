@@ -1,0 +1,16 @@
+- hosts: my
+  vars:
+    http_port: 80
+    max_client: 200
+    remote_user: root
+
+  tasks:
+  - name: Install the latest apache server
+    yum: pkg=httpd state=latest
+
+
+  - name: ensure apache is running
+    service: name=httpd state=started
+
+  handlers:
+    service: name=httpd state=restarted

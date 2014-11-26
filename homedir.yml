@@ -1,0 +1,9 @@
+---
+  - hosts: my
+  
+    tasks:
+    - name: list the home directories
+      command: ls /home
+      register: home_dir
+    - debug: msg=${home_dir.stdout}
+    - shell: echo "home_dir.stdout" 

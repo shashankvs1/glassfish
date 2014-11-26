@@ -1,0 +1,10 @@
+- hosts: my
+  remote_user: root
+  tasks:
+  - name: install ntp 
+    yum: pkg=ntp state=latest
+    
+  - name: ensure that ntp is running
+    service: name=ntpd state=running
+  - name: restart ntp
+    service: name=ntpd state=restarted

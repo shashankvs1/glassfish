@@ -1,0 +1,21 @@
+- hosts: "{{inv_hosts}}"
+  remote_user: root
+  tasks:
+  - name: install bheapsampler
+    action: shell wget http://dr-brenschede.de/bheapsampler_bin/bheapsampler-1.3.zip
+  - unarchive: src=/root/bheapsampler-1.3.zip dest=/root
+
+  - name: install graphviz
+    yum: pkg=graphviz state=present
+
+ # - name: install s3cmd 
+ #   action: shell wget http://s3tools.org/repo/RHEL_6/s3tools.repo
+ # - copy: src=/root/s3tools.repo dest=/etc/yum.repos.d/
+
+ # - name: install s3cmd 
+ #   yum: pkg=s3cmd state=present
+
+
+  - name: check for the java process
+    shell: ps ax | grep -i httpd 
+

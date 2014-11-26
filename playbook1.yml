@@ -1,0 +1,13 @@
+---
+- hosts: $inv_hosts
+  gather_facts: yes
+  tasks:
+  - name: Check the disk space
+    shell: "df -h | awk {'print $5'}"
+    register: result
+
+  - debug: msg="{{result.stdout}}"
+
+  - debug: msg="IP of the servers {{ansible_default_ipv4.address}}" 
+    when: result|success 
+    

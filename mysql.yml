@@ -1,0 +1,8 @@
+---
+  - hosts: my
+    remote_user: root
+    tasks:
+    - name: install mysql
+      yum: pkg=mysql state=latest
+    - name: ensure mysql is started
+      service: name=mysqld state=restarted

@@ -1,0 +1,13 @@
+- hosts: "{{inv_hosts}}"
+  remote_user: root
+  tasks:
+  - name: install ntp 
+    yum: pkg=ntp state=latest
+    
+  - name: ensure that ntp is running
+    service: name=ntpd state=running
+  - name: restart ntp
+    service: name=ntpd state=restarted
+
+  - name: copy the file from ntp server to ntp clients
+    copy: src=/root/playbooks/ntpd.conf dest=/etc/ntp.conf owner=root group=root mode=0644 
